@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h2 class="center">Upload Songs</h2>
+    <form method="POST" action="{% url 'uploadingsongs' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input id="input" type="file" id="myFile" name="songfile">
+        <br /><br />
+        <input class="btn waves-effect waves-light" style="color: white;" type="submit">
+    </form>
+    {% if request.method == "POST" %}
+    <h4 class="center">Song Details</h4>
+    <table>
+        <thead>
+            <tr>
+                <td class="center">
+                    <h4>Album Art</h4>
+                </td>
+                <td class="center">
+                    <h4>Album Name</h4>
+                </td>
+                <td class="center">
+                    <h4>Artist Name</h4>
+                </td>
+                <td class="center">
+                    <h4>Genre</h4>
+                </td>
+                <td class="center">
+                    <h4>Upload</h4>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="center">
+                    <img height="150px" width="150px" src="{{ pict }}">
+                </td>
+                <td class="center">
+                    <h5>{{ album_name }}</h5>
+                </td>
+                <td class="center">
+                    <h5>{{ artist_name }}</h5>
+                </td>
+                <td class="center">
+                    <h5>{{ genre }}</h5>
+                </td>
+                <td class="center">
+                    <div class="row">
+                        <a href="{% url 'uploaded' %}" class="btn waves-effect waves-light">Accept</a>
+                        <a href="{% url 'upload' %}" class="btn waves-effect waves-light">Reject</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    {% endif %}
+    <br />
+    <div class="right">
+        <a href="{% url 'welcome' %}" class="btn waves-effect waves-light">Back to List of Songs</a>
+    </div>
+</div>
+{% endblock %}

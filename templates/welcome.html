@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <td class="center">
+                    <h4>Album Art</h4>
+                </td>
+                <td class="center">
+                    <h4>Album Name</h4>
+                </td>
+                <td class="center">
+                    <h4>Artist Name</h4>
+                </td>
+                <td class="center">
+                    <h4>Genre</h4>
+                </td>
+                <td class="center">
+                    <h4>Download</h4>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in main_dict.items %}
+            <tr>
+                <td>
+                    <img height="150px" width="150px" src="{{ value.album_img }}">
+                </td>
+                <td class="center">
+                    <h5>{{ value.album_name }}</h5>
+                </td>
+                <td class="center">
+                    <h5>{{ value.artist }}</h5>
+                </td>
+                <td class="center">
+                    <h5>{{ value.genre }}</h5>
+                </td>
+                <td class="center">
+                    <a class="btn waves-effect waves-light" href="{{ value.song }}" download>
+                        Download
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br />
+    <div class="right">
+        <a href="{% url 'upload' %}" class="btn waves-effect waves-light">Upload</a>
+    </div>
+    <br />
+</div>
+
+{% endblock %}
